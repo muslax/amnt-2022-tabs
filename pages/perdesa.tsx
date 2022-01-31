@@ -32,7 +32,7 @@ export default function Index({ dfDesa, dfResponden }: { dfDesa:any, dfResponden
 
       <select className="py-1" onChange={(e) => setDesa(e.target.value)}>
         <option value="">- Semua</option>
-        {dfDesa.map(d => (
+        {dfDesa.map((d:any) => (
           <option key={d._id} value={d.nama}>{d.nama}</option>
         ))}
       </select>
@@ -57,7 +57,7 @@ export default function Index({ dfDesa, dfResponden }: { dfDesa:any, dfResponden
               </tr>
             </tbody>
             <tbody>
-            {daftar().map((res, i) => (
+            {daftar().map((res:any, i:number) => (
               <tr key={res._id} className="border-b last:border-none">
                 <td className="p-2">{i + 1}</td>
                 <td className="p-2 border-l">{res.nama}</td>
