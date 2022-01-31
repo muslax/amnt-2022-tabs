@@ -79,7 +79,7 @@ export default function Index({ dfDesa, dfItems }: { dfDesa:any, dfItems: any}) 
                 <td className="p-2 border-l">minatPelatihan</td>
                 <td className="p-2 border-l">jenisPelatihan</td>
                 <td className="p-2 border-l">pendapatanPerBulan</td>
-                {/* <td className="p-2 border-l">sumberPendapatan</td> */}
+                <td className="p-2 border-l">sumberPendapatan</td>
                 <td className="p-2 border-l">belanjaPerBulan</td>
                 <td className="p-2 border-l">belanjaKonsumsi</td>
                 <td className="p-2 border-l">belanjaKesehatan</td>
@@ -108,7 +108,7 @@ export default function Index({ dfDesa, dfItems }: { dfDesa:any, dfItems: any}) 
                 <td className="p-2 border-l">{res.minatPelatihan}</td>
                 <td className="p-2 border-l">{res.jenisPelatihan}</td>
                 <td className="p-2 border-l">{res.pendapatanPerBulan}</td>
-                {/* <td className="p-2 border-l">{res.sumberPendapatan}</td> */}
+                <td className="p-2 border-l">{res.sumberPendapatan.join(" / ")}</td>
                 <td className="p-2 border-l">{res.belanjaPerBulan}</td>
                 <td className="p-2 border-l">{res.belanjaKonsumsi}</td>
                 <td className="p-2 border-l">{res.belanjaKesehatan}</td>
