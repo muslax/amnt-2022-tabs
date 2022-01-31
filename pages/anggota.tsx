@@ -3,7 +3,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { connect } from "../utils/mongo"
 
-export default function Index({ dfDesa, dfAnggota }) {
+export default function Index({ dfDesa, dfAnggota }: { dfDesa:any, dfAnggota: any}) {
   const [desa, setDesa] = useState('');
 
   function daftar() {
