@@ -45,6 +45,8 @@ export default function Index({ dfDesa, dfAset }: { dfDesa:any, dfAset: any}) {
             <tbody>
               <tr className="bg-gray-100 border-b font-semibold">
                 <td className="p-2">#</td>
+                <td className="p-2 border-l">nama</td>
+                <td className="p-2 border-l">desa</td>
                 <td className="p-2 border-l">jenis</td>
                 <td className="p-2 border-l">luas</td>
                 <td className="p-2 border-l">ruang</td>
@@ -67,6 +69,8 @@ export default function Index({ dfDesa, dfAset }: { dfDesa:any, dfAset: any}) {
             {daftar().map((res:any, i:number) => (
               <tr key={res._id} className="border-b last:border-none">
                 <td className="p-2">{i + 1}</td>
+                <td className="p-2 border-l">{res.nama}</td>
+                <td className="p-2 border-l">{res.desa}</td>
                 <td className="p-2 border-l">{res.jenis}</td>
                 <td className="p-2 border-l">{res.luas}</td>
                 <td className="p-2 border-l">{res.ruang}</td>
@@ -126,6 +130,7 @@ export async function getStaticProps() {
       traktor: 1,
       sumberListrik: 1,
       "nama": "$responden.nama",
+      "desa": "$responden.desa",
     }}
   ]).toArray();
 
