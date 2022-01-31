@@ -9,7 +9,7 @@ export default function Index({ dfDesa, dfResponden }: { dfDesa:any, dfResponden
   function daftar() {
     if (!desa) return dfResponden;
 
-    return dfResponden.filter(item => item.desa == desa);
+    return dfResponden.filter((item:any) => item.desa == desa);
   }
 
   return (
