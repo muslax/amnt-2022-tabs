@@ -4,6 +4,7 @@ import Link from 'next/link'
 const pages = [
   { href: "/perdesa", title: "Daftar responden" },
   { href: "/anggota", title: "Daftar anggota keluarga" },
+  { href: "/aset", title: "Daftar aset" },
 ]
 
 export default function Home() {
