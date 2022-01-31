@@ -6,6 +6,7 @@ const pages = [
   { href: "/anggota", title: "Daftar anggota keluarga" },
   { href: "/aset", title: "Daftar aset" },
   { href: "/ekonomi", title: "Ekonomi keluarga" },
+  { href: "/ksesmas", title: "Kesehatan masyarakat" },
 ]
 
 export default function Home() {
