@@ -15,7 +15,7 @@ export default function Index({ dfDesa, dfAset }: { dfDesa:any, dfAset: any}) {
   return (
     <div className="p-5">
       <Head>
-        <title>Daftar Anggota Keluarga</title>
+        <title>Daftar Aset Keluarga</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -26,8 +26,8 @@ export default function Index({ dfDesa, dfAset }: { dfDesa:any, dfAset: any}) {
       </p>
 
       <h1 className="text-lg font-bold mb-6">{ desa
-        ? `Daftar anggota keluarga Desa ${desa}`
-        : 'Daftar anggota keluarga seluruh desa'
+        ? `Daftar aset keluarga Desa ${desa}`
+        : 'Daftar aset keluarga seluruh desa'
       }</h1>
 
       <select className="py-1" onChange={(e) => setDesa(e.target.value)}>
