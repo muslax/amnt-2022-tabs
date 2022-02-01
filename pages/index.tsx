@@ -7,6 +7,9 @@ const pages = [
   { href: "/aset", title: "Daftar aset" },
   { href: "/ekonomi", title: "Ekonomi keluarga" },
   { href: "/kesmas", title: "Kesehatan masyarakat" },
+  { href: "/konflik", title: "Data Konflik masyarakat" },
+  { href: "/observasi", title: "Data Observasi masyarakat" },
+  { href: "/persepsi", title: "Persepsi masyarakat" },
 ]
 
 export default function Home() {
