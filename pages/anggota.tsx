@@ -1,9 +1,14 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useState } from "react";
+import Card from "../components/card";
 import { connect } from "../utils/mongo"
+import { extract } from "../utils/utils";
 
-export default function Index({ dfDesa, dfAnggota }: { dfDesa:any, dfAnggota: any}) {
+export default function Index(
+  { dfDesa, dfAnggota, aggregate }:
+  { dfDesa:any, dfAnggota: any, aggregate:any}
+) {
   const [desa, setDesa] = useState('');
 
   function daftar() {
@@ -29,6 +34,14 @@ export default function Index({ dfDesa, dfAnggota }: { dfDesa:any, dfAnggota: an
         ? `Daftar anggota keluarga Desa ${desa}`
         : 'Daftar anggota keluarga seluruh desa'
       }</h1>
+
+      <div className="overflow-x-auto mb-6">
+        <Card label="Jenis kelamin" data={aggregate.gender} />
+        <Card label="Hubungan" data={aggregate.hubungan} />
+        <Card label="Pendidikan" data={aggregate.pendidikan} />
+        <Card label="Pekerjaan utama" data={aggregate.pekerjaanUtama} />
+        <Card label="Pekerjaan lain" data={aggregate.pekerjaanLain} />
+      </div>
 
       <select className="py-1" onChange={(e) => setDesa(e.target.value)}>
         <option value="">- Semua</option>
@@ -108,10 +121,20 @@ export async function getStaticProps() {
     }}
   ]).toArray();
 
+  const gender = extract(dfAnggota, 'gender');
+  const hubungan = extract(dfAnggota, 'hubungan');
+  const pendidikan = extract(dfAnggota, 'pendidikan');
+  const melekHuruf = extract(dfAnggota, 'melekHuruf');
+  const pekerjaanUtama = extract(dfAnggota, 'pekerjaanUtama');
+  const pekerjaanLain = extract(dfAnggota, 'pekerjaanLain');
+
   return {
     props: {
       dfDesa,
       dfAnggota,
+      aggregate: {
+        gender, hubungan, pendidikan, melekHuruf, pekerjaanUtama, pekerjaanLain,
+      }
     },
     revalidate: 10,
   }
