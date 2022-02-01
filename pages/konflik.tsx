@@ -66,7 +66,6 @@ export default function Index({ dfDesa, dfItems }: { dfDesa:any, dfItems: any}) 
                 <td className="p-2">#</td>
                 <td className="p-2 border-l">nama</td>
                 <td className="p-2 border-l">desa</td>
-                <td className="p-2 border-l">penyakit</td>
                 <td className="p-2 border-l">konflik</td>
                 <td className="p-2 border-l">infoKonflik</td>
                 <td className="p-2 border-l">konflikHorisontal</td>
