@@ -140,7 +140,7 @@ export default function Index({ dfDesa, dfItems }: { dfDesa:any, dfItems: any}) 
 export async function getStaticProps() {
   const { db } = await connect();
   const dfDesa = await db.collection('desa').find({}).sort('nama').toArray();
-  const dfItems = await db.collection('konflik').aggregate([
+  const dfItems = await db.collection('observasi').aggregate([
     { $match: {}},
     { $lookup : {
       from: "responden",
