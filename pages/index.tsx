@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 const pages = [
-  { href: "/perdesa", title: "Daftar responden" },
+  { href: "/responden", title: "Daftar responden" },
   { href: "/anggota", title: "Daftar anggota keluarga" },
   { href: "/aset", title: "Daftar aset" },
   { href: "/ekonomi", title: "Ekonomi keluarga" },
