@@ -40,7 +40,8 @@ export default function Index(
         <Card label="Jenis kelamin" data={aggregate.gender} />
         <Card label="Status keluarga" data={aggregate.statusKeluarga} />
         <Card label="Pendidikan" data={aggregate.pendidikan} />
-        <Card label="Pekerjaan uatama" data={aggregate.pekerjaanUtama} />
+        <Card label="Pekerjaan utama" data={aggregate.pekerjaanUtama} />
+        <Card label="Pekerjaan lain" data={aggregate.pekerjaanLain} />
         <Card label="Suku" data={aggregate.suku} />
         <Card label="Agama" data={aggregate.agama} />
       </div>
@@ -71,6 +72,7 @@ export default function Index(
                 <td className="p-2 border-l">statusKeluarga</td>
                 <td className="p-2 border-l">pendidikan</td>
                 <td className="p-2 border-l">pekerjaanUtama</td>
+                <td className="p-2 border-l">pekerjaanLain</td>
                 <td className="p-2 border-l">suku</td>
                 <td className="p-2 border-l">agama</td>
               </tr>
@@ -87,6 +89,7 @@ export default function Index(
                 <td className="p-2 border-l">{res.statusKeluarga}</td>
                 <td className="p-2 border-l">{res.pendidikan}</td>
                 <td className="p-2 border-l">{res.pekerjaanUtama}</td>
+                <td className="p-2 border-l">{res.pekerjaanLain}</td>
                 <td className="p-2 border-l">{res.suku}</td>
                 <td className="p-2 border-l">{res.agama}</td>
               </tr>
@@ -142,6 +145,7 @@ export async function getStaticProps() {
   ]).toArray();
 
   const pekerjaanUtama = extract(dfResponden, 'pekerjaanUtama');
+  const pekerjaanLain = extract(dfResponden, 'pekerjaanLain');
   const pendidikan = extract(dfResponden, 'pendidikan');
   const statusKeluarga = extract(dfResponden, 'statusKeluarga');
   const gender = extract(dfResponden, 'gender');
@@ -157,6 +161,7 @@ export async function getStaticProps() {
         statusKeluarga,
         pendidikan,
         pekerjaanUtama,
+        pekerjaanLain,
         suku,
         agama,
       }
