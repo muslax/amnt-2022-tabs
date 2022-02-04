@@ -10,6 +10,11 @@ const pages = [
   { href: "/konflik", title: "Data Konflik masyarakat" },
   { href: "/observasi", title: "Data Observasi masyarakat" },
   { href: "/persepsi", title: "Persepsi masyarakat" },
+  { href: "/nelayan", title: "Responden Nelayan" },
+  { href: "/tanaman", title: "Data Tanaman" },
+  { href: "/ternak", title: "Data Ternak" },
+  { href: "/ikan", title: "Data Ikan" },
+  { href: "/hutan", title: "Data Hasil Hutan" },
 ]
 
 export default function Home() {
@@ -28,7 +33,7 @@ export default function Home() {
         <h1 className="text-lg font-bold mb-6">Daftar Tabulasi</h1>
 
         {pages.map((p, i) => (
-          <li key={p.href}>
+          <li key={p.href} className='mb-2'>
             <Link href={p.href}>
               <a className='text-sky-500 hover:underline hover:text-sky-600'>{p.title}</a>
             </Link>
