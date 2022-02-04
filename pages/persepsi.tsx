@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { useState } from "react";
+import { Key, useState } from "react";
 import { connect } from "../utils/mongo"
 
 export type Datum = {
@@ -82,8 +82,8 @@ export default function Index(
       <div className="overflow-x-auto py-4">
         <div className="flex space-x-3">
           <MappingManfaat mapping={manfaatOverall} title="Seluruh Desa" />
-          {manfaatPerdesa.map(mp => (
-            <div key={mp.desa}><MappingManfaat mapping={mp.mapping} title={mp.desa} /></div>
+          {manfaatPerdesa.map((mp: { desa: Key | null | undefined; mapping: any; }) => (
+            <div key={mp.desa}><MappingManfaat mapping={mp.mapping} title={mp.desa as string} /></div>
           ))}
         </div>
       </div>
@@ -163,7 +163,7 @@ export default function Index(
   )
 }
 
-function MappingManfaat({ mapping, title }) {
+function MappingManfaat({ mapping, title }: {mapping: any[], title: string}) {
   return (
     <table className="text-sm border border-gray-400">
       <tbody>
