@@ -31,7 +31,10 @@ export type Datum = {
   infoAktivitas: string,
 }
 
-export default function Index({ dfDesa, dfItems }: { dfDesa:any, dfItems: any}) {
+export default function Index(
+  { dfDesa, dfItems, manfaatOverall, manfaatPerdesa, totalPopulasiJenis }:
+  { dfDesa:any, dfItems: any, manfaatOverall: any, manfaatPerdesa:any, totalPopulasiJenis: number}
+) {
   const [desa, setDesa] = useState('');
 
   function daftar() {
@@ -73,6 +76,20 @@ export default function Index({ dfDesa, dfItems }: { dfDesa:any, dfItems: any}) 
         ))}
       </select>
       <span className="ml-2">{daftar().length}</span>
+      
+      <p className="text-bold mt-3">Total pilihan persepsi manfaat ekonomi: {totalPopulasiJenis}</p>
+      
+      <div className="overflow-x-auto py-4">
+        <div className="flex space-x-3">
+          <MappingManfaat mapping={manfaatOverall} title="Seluruh Desa" />
+          {manfaatPerdesa.map(mp => (
+            <div key={mp.desa}><MappingManfaat mapping={mp.mapping} title={mp.desa} /></div>
+          ))}
+        </div>
+      </div>
+
+      {/* <pre className="text-[11px]">{totalPopulasiJenis} {JSON.stringify(manfaatOverall, null, 2)}</pre> */}
+      {/* <pre className="text-[11px]">MAP {JSON.stringify(manfaatPerdesa, null, 2)}</pre> */}
 
       <div className="border border-gray-400 overflow-auto my-5 mb-36">
         {! daftar().length && <p className="p-2">Tidak ada data</p>}
@@ -146,6 +163,25 @@ export default function Index({ dfDesa, dfItems }: { dfDesa:any, dfItems: any}) 
   )
 }
 
+function MappingManfaat({ mapping, title }) {
+  return (
+    <table className="text-sm border border-gray-400">
+      <tbody>
+        <tr>
+          <td colSpan={2} className="bg-yellow-200 font-medium p-2">{title}</td>
+        </tr>
+        {mapping.map((item, index) => (
+          <tr key={item.jenis} className="border-t border-gray-300 text-xs">
+            <td className="p-2">{item.jenis}</td>
+            <td className="p-2 text-right">{item.jumlah}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  )
+}
+
+
 export async function getStaticProps() {
   const { db } = await connect();
   const dfDesa = await db.collection('desa').find({}).sort('nama').toArray();
@@ -187,10 +223,68 @@ export async function getStaticProps() {
     }}
   ]).toArray();
 
+  // Menghitung jenis-jenis persepsi manfaat ekonomi
+  // overall dan per desa
+
+  // interface Mapping<T> {
+  //   [index: string]: T;
+  //   [index: number]: T;
+  // };
+
+  // const mapOverall: Mapping = ;
+  const mapOverall: Map<string, number> = new Map();
+  const mapPerdesa = new Map();
+  let totalPopulasiJenis = 0;
+  // const mapPerdesa = {};
+
+  dfDesa.forEach(desa => {
+    const namaDesa: string = desa.nama || "";
+    // const map = new Map();
+    mapPerdesa.set(namaDesa, null);
+    // mapPerdesa[namaDesa]
+  })
+
+  dfItems.forEach(item => {
+    const dfManfaat = item.manfaatEkonomi;
+    for (const m of dfManfaat ) {
+      totalPopulasiJenis++;
+      
+      if (! mapPerdesa.get(item.desa)) {
+        const __mapping: Map<string, number> = new Map();
+        mapPerdesa.set(item.desa, __mapping);
+      }
+      
+      const mapping = mapPerdesa.get(item.desa);
+      if (mapping.get(m) == undefined) {
+        mapping.set(m, 1);
+      } else {
+        const n = mapping.get(m) || 0;
+        mapping.set(m, n + 1);
+      }
+      
+      if (mapOverall.get(m) == undefined) {
+        mapOverall.set(m, 1);
+      } else {
+        const n = mapOverall.get(m) || 0; // ???
+        mapOverall.set(m, n + 1);
+      }
+    }
+  });
+  
+  console.log("totalPopulasiJenis", totalPopulasiJenis);
+
+  const manfaatOverall = Array.from(mapOverall, ([jenis, jumlah]) => ({ jenis, jumlah }));
+  // const manfaatOverall = Array.from(mapOverall, ([jenis, jumlah]) => ({ [jenis]: jumlah }));
+  // const manfaatPerdesa = Array.from(mapPerdesa, ([desa, mapping]) => ({ desa, mapping: Array.from(mapping) }));
+  const manfaatPerdesa = Array.from(mapPerdesa, ([desa, mapping]) => ({ desa, mapping: Array.from(mapping, ([jenis, jumlah]) => ({ jenis, jumlah })) }));
+
   return {
     props: {
       dfDesa,
       dfItems,
+      manfaatOverall,
+      manfaatPerdesa,
+      totalPopulasiJenis,
     },
     revalidate: 10,
   }
