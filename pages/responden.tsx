@@ -67,6 +67,9 @@ export default function Index(
                 <td className="p-2 border-l">desa</td>
                 <td className="p-2 border-l">nama</td>
                 <td className="p-2 border-l">anggota</td>
+                <td className="p-2 border-l">bahasa</td>
+                <td className="p-2 border-l">lamaTinggal</td>
+                <td className="p-2 border-l">asal</td>
                 <td className="p-2 border-l">gender</td>
                 <td className="p-2 border-l">umur</td>
                 <td className="p-2 border-l">statusKeluarga</td>
@@ -84,6 +87,9 @@ export default function Index(
                 <td className="p-2 border-l">{res.desa}</td>
                 <td className="p-2 border-l">{res.nama}</td>
                 <td className="p-2 border-l">{res.anggota}</td>
+                <td className="p-2 border-l">{res.bahasa}</td>
+                <td className="p-2 border-l">{res.lamaTinggal}</td>
+                <td className="p-2 border-l">{res.asal}</td>
                 <td className="p-2 border-l">{res.gender}</td>
                 <td className="p-2 border-l">{res.umur}</td>
                 <td className="p-2 border-l">{res.statusKeluarga}</td>
